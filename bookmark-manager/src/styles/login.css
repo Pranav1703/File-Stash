@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Assistant&family=Inconsolata:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap');
+
+.main{
+    border: 1px solid black;
+    
+    width: 35%;
+    margin-left: 33%;
+    margin-top: 15%;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+
+
+}
+
+h1{
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    font-family: 'Assistant'  , sans-serif;
+}
+
+.errMsg{
+    margin-left: 33%;
+    margin-top: 15px;
+    font-family: 'Ubuntu Mono', monospace;
+    font-size: medium;
+}
+
+#new{
+    margin-left: 45%;
+    margin-top: 30px;
+    font-family: 'Ubuntu Mono', monospace;
+    font-size: medium;
+}
+
+#existing{
+    margin-left: 40%;
+    margin-top: 30px;
+    font-family: 'Ubuntu Mono', monospace;
+    font-size: medium;
+}
+
+.container>form>input{
+    width: 90%;
+    height: 25px;
+    margin-left:20px;
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+
+.redirect{
+    margin-left: 45%;
+    margin-top: 15px;
+    font-size: 20px;
+    text-decoration: none;
+    color: black;
+    font-family: 'Ubuntu Mono', monospace;
+    width: 10%;
+    padding: 5px;
+    margin-bottom:10px;
+}
+
+.redirect:hover{
+    color: rgb(204, 217, 236);;
+    background-color: rgb(109, 109, 109);
+}
+
+
+
+.submitBtn{
+    width:91.5%;
+    height: 30px;
+    margin-left: 20px;
+    margin-right: 0;
+
+    font-size: 15px;
+    font-family: 'Ubuntu Mono', monospace;
+    color:rgb(15, 14, 14);
+    background-color: #c5d3ed;
+    font-size: 20px;
+}
+
+.submitBtn:hover{
+    color: rgb(204, 217, 236);;
+    background-color: rgb(109, 109, 109);
+}
+
+/*
+
+font-family: 'Assistant'  , sans-serif;
+font-family: 'Inconsolata', monospace;
+font-family: 'Ubuntu Mono', monospace;
+
+*/
