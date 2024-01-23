@@ -2,7 +2,6 @@ import express from "express"
 import cors from "cors"
 import 'dotenv/config'
 import mongoose from "mongoose"
-import {User} from "../models/user.js"
 import loginRouter from "../routes/login.js"
 import signupRouter from "../routes/signup.js"
 
