@@ -4,7 +4,7 @@ import Header from './components/Header'
 import {BrowserRouter , Routes, Route} from "react-router-dom"
 import Login from "./components/Login"
 import SignUp from "./components/SignUp"
-
+import Home from './components/Home'
 
 function App() {
   // const [user,setUser] = useState<string>("")
@@ -15,8 +15,7 @@ function App() {
         <Routes>
           <Route path="/login" element = {<Login/>}/>
           <Route path="/signup" element = {<SignUp/>}/>
-          <Route path="/" element = {<Header username = {"orjbg rjbg "}/>}/>
-          
+          <Route path="/" element = {<Home/>}/>
         </Routes>
       </BrowserRouter>
     </>

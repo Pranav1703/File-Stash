@@ -16,7 +16,7 @@ const Header = ({username}:props ) => {
   
   return (
     <div className = "header">
-      <h2>Bookmark Manager</h2>
+      <h2>Image Locker</h2>
       <div className="user">
         <h4>Current User: <span>{username}</span></h4>
         <button className="logoutBtn" type="button" onClick={logOut}>log out</button>

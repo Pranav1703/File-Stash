@@ -46,7 +46,7 @@ const SignUp = () => {
 
 
     return (
-    <div className="main">
+    <div className="block">
     <h1>SignUp</h1>
     <div className="container">
 
