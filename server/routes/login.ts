@@ -13,7 +13,10 @@ router.post("/",async(req,res)=>{
         if(check){
 
             if(check.password === req.body.password){
-                res.json("exists")
+                res.json({
+                    exists: true ,
+                    username: check.username, 
+                })
             }
             else{
                 res.json("pass incorrect")

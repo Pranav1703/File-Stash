@@ -1,11 +1,14 @@
 import Header from "./Header"
-import Img from "./img"
+import Img from "./Img"
 import "../styles/home.css"
+
+
 
 const Home = () => {
   return (
     <>
-        <Header username = {"yuhghu"}/>
+   
+        <Header/>
         <div className="main">
             <Img/>
             <Img/>
@@ -26,7 +29,6 @@ const Home = () => {
             <Img/>
             <Img/>
             <Img/>
-            
         </div>
     </>
   )

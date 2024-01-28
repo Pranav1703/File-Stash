@@ -1,24 +1,20 @@
 import "../styles/header.css"
 import { useNavigate } from "react-router-dom"
+ import {current_user} from "./Login"
 
 
-
-type props = {
-  username: string
-}
-
-const Header = ({username}:props ) => {
+const Header = () => {
   const navigate = useNavigate()
   const logOut = ()=>{
     navigate("/login")
     
   }
-  
+  console.log(current_user)
   return (
     <div className = "header">
-      <h2>Image Locker</h2>
+      <h2>File Locker</h2>
       <div className="user">
-        <h4>Current User: <span>{username}</span></h4>
+        <h4>Current User: <span>{current_user}</span></h4>
         <button className="logoutBtn" type="button" onClick={logOut}>log out</button>
       </div>
     </div>

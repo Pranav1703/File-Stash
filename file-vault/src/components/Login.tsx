@@ -2,13 +2,20 @@ import { FormEvent,useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/login.css"
 import axios from "axios"
+import { useNavigate } from "react-router-dom";
 
- import { useNavigate } from "react-router-dom";
+// type props = {
+//     user: String,
+//     setter: Function
+// }
+
+let current_user:string = "init"
 
 const Login = () => {
     const [name,setName] = useState<string>("");
     const [pass,setPass] =  useState<string>("")
     const [loginStatus,setLoginStatus] = useState<string>("false")
+    // const [current_user,setCurrentUser] = useState<string>("")
 
     const navigate = useNavigate()
 
@@ -32,8 +39,9 @@ const Login = () => {
                 password:pass,
             })
             console.log(response)
-            if(response.data==="exists"){
-                
+            if(response.data.exists===true){
+                // setCurrentUser(response.data.username)
+                current_user = response.data.username;
                 navigate("/")
             }else if(response.data==="pass incorrect"){
                 
@@ -42,6 +50,8 @@ const Login = () => {
             }else if(response.data==="doesnt exist"){
                 setLoginStatus("error")
             }
+       
+                
             
         } catch (error) {
             console.log(error)
@@ -78,4 +88,5 @@ const Login = () => {
   )
 }
 
-export default Login
+export {current_user}
+export {Login}
