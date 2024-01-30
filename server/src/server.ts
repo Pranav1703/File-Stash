@@ -4,6 +4,7 @@ import 'dotenv/config'
 import mongoose from "mongoose"
 import loginRouter from "../routes/login.js"
 import signupRouter from "../routes/signup.js"
+import {upload} from "../middleware/multer.js"
 
 const port = 3000
 
@@ -85,5 +86,8 @@ app.get("/",(req,res)=>{
 app.use("/login",loginRouter)
 app.use("/signup",signupRouter)
 
-
+app.post("/upload",upload.single("uploadedFile"),async(req,res)=>{
+    console.log("data-->",req.body);
+    res.json({recieved:true})
+})
 
