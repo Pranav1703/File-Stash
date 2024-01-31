@@ -6,7 +6,7 @@ import loginRouter from "../routes/login.js"
 import signupRouter from "../routes/signup.js"
 import {upload} from "../middleware/multer.js"
 
-const port = 3000
+const port = 3000;
 
 const app = express()
 app.use(express.json())
@@ -87,7 +87,6 @@ app.use("/login",loginRouter)
 app.use("/signup",signupRouter)
 
 app.post("/upload",upload.single("uploadedFile"),async(req,res)=>{
-    console.log("data-->",req.body);
     res.json({recieved:true})
 })
 
