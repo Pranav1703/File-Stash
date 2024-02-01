@@ -14,7 +14,7 @@ const Home = () => {
     if(!file){
       console.log("no file provided")
     }
-    console.log(file);
+    console.log("file set",file);
     setFile(file)
   }
 
@@ -46,25 +46,25 @@ const Home = () => {
                 <button type="submit" onClick={submitHandler}>upload</button>
               </form>
             </div>
-            <Img/>
-            <Img/>
-            <Img/>
-            <Img/>
-            <Img/>
-            <Img/>
-            <Img/>
-            <Img/>
-            <Img/>
-            <Img/>
-            <Img/>
-            <Img/>
-            <Img/>
-            <Img/>
-            <Img/>
-            <Img/>
-            <Img/>
-            <Img/>
-            <Img/>
+            <Img imgPath={"http://localhost:3000//uploadedFile-1706769191404.jpg"}/>
+            <Img imgPath={"http://localhost:3000//uploadedFile-1706769191404.jpg"}/>
+            <Img imgPath={"http://localhost:3000//uploadedFile-1706769191404.jpg"}/>
+            <Img imgPath={"http://localhost:3000//uploadedFile-1706769191404.jpg"}/>
+            <Img imgPath={"http://localhost:3000//uploadedFile-1706769191404.jpg"}/>
+            <Img imgPath={"http://localhost:3000//uploadedFile-1706769191404.jpg"}/>
+            <Img imgPath={"http://localhost:3000//uploadedFile-1706769191404.jpg"}/>
+            <Img imgPath={"http://localhost:3000//uploadedFile-1706769191404.jpg"}/>
+            <Img imgPath={"http://localhost:3000//uploadedFile-1706769191404.jpg"}/>
+            <Img imgPath={"http://localhost:3000//uploadedFile-1706769191404.jpg"}/>
+            <Img imgPath={"http://localhost:3000//uploadedFile-1706769191404.jpg"}/>
+            <Img imgPath={"http://localhost:3000//uploadedFile-1706769191404.jpg"}/>
+            <Img imgPath={"http://localhost:3000//uploadedFile-1706769191404.jpg"}/>
+            <Img imgPath={"http://localhost:3000//uploadedFile-1706769191404.jpg"}/>
+            <Img imgPath={"http://localhost:3000//uploadedFile-1706769191404.jpg"}/>
+            <Img imgPath={"http://localhost:3000//uploadedFile-1706769191404.jpg"}/>
+            <Img imgPath={"http://localhost:3000//uploadedFile-1706769191404.jpg"}/>
+            <Img imgPath={"http://localhost:3000//uploadedFile-1706769191404.jpg"}/>
+            <Img imgPath={"http://localhost:3000//uploadedFile-1706769191404.jpg"}/>
         </div>
     </>
   )

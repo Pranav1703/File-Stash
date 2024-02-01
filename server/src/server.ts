@@ -12,6 +12,7 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(cors())
+app.use(express.static('storage'))
 
 mongoose.Promise = Promise
 const url = process.env.mongo_url as string
