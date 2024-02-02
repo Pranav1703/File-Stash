@@ -52,9 +52,8 @@ const Login = () => {
             }
        
                 
-            
         } catch (error) {
-            console.log(error)
+            console.log("error while sendind request to server --- ",error)
         }
 
         

@@ -1,14 +1,16 @@
 import Header from "./Header"
 import Img from "./Img"
 import "../styles/home.css"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import axios from "axios"
+import {current_user} from "./Login"
 
 
 const Home = () => {
   
   const [file,setFile] = useState<File>();
-  
+  const [data,setData] = useState()
+
   const fileChange = (e:React.ChangeEvent<HTMLInputElement>)=>{
     const file = e.target.files![0];
     if(!file){
@@ -22,19 +24,47 @@ const Home = () => {
     e.preventDefault()
     try {
       const formData = new FormData();
+
       if(file){
         formData.append("uploadedFile",file)
+        formData.append("user",current_user);
+        
         for (const pair of formData.entries()) {
           console.log(pair[0], ":",pair[1]);
         }
       }
+
       const response = await axios.post("http://localhost:3000/upload",formData)
-      console.log("response from server -----------------------------------------------------\n",response.data)
+      console.log("response from server -----------------------------------------------------\n",response.data.status)
     } catch (error) {
       console.log("post request failed :=",error)
     }
     //enctype="multipart/form-data"
   }
+
+  const getData = async() =>{
+    try {
+      const res = await axios.get("http://localhost:3000/getFiles");
+      return res;
+    } catch (error) {
+      console.log("error while sending request : ",error)
+    }
+  }
+
+  useEffect(() => {
+    
+    axios.get("http://localhost:3000/getFiles")
+    .then(response =>{
+      console.log("Status of search :",response.data.status);
+      if(response.data.status !== "error"){
+        setData(response.data.dataArray)
+      }
+    })
+    .catch(err => console.log("error while sending request -- ",err))
+    
+    console.log("array of docs --- ",data)
+  }, [])
+
   
   return (
     <>

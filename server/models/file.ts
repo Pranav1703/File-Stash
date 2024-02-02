@@ -8,4 +8,4 @@ const fileSchema = new mongoose.Schema({
     timestamps:true,
 });
 
-export const Files = mongoose.model('File',fileSchema);
+export const File = mongoose.model('File',fileSchema);
