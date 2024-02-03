@@ -7,15 +7,16 @@ router.get("/",async(req,res)=>{
     try {
         const allFiles = await File.find();
         console.log("data from DB-----------------------------------------\n",allFiles)
+        
         res.json({
             dataArray: allFiles,
-            status: "found all docs",
+            searchStatus: true,
         })
     } catch (error) {
         console.log("error while finding all the files -----------",error)
         res.json({
             dataArray: null,
-            status: "error",
+            searchStatus: "error",
         })
     }
 })

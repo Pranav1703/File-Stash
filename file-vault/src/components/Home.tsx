@@ -9,7 +9,11 @@ import {current_user} from "./Login"
 const Home = () => {
   
   const [file,setFile] = useState<File>();
-  const [data,setData] = useState()
+
+  // const [data,setData] = useState()
+
+  let imgPathArray: Array<Object> = []
+
 
   const fileChange = (e:React.ChangeEvent<HTMLInputElement>)=>{
     const file = e.target.files![0];
@@ -22,6 +26,7 @@ const Home = () => {
 
   const submitHandler = async(e:React.MouseEvent<HTMLButtonElement, MouseEvent>)=>{
     e.preventDefault()
+
     try {
       const formData = new FormData();
 
@@ -35,20 +40,14 @@ const Home = () => {
       }
 
       const response = await axios.post("http://localhost:3000/upload",formData)
+
       console.log("response from server -----------------------------------------------------\n",response.data.status)
+
     } catch (error) {
       console.log("post request failed :=",error)
     }
     //enctype="multipart/form-data"
-  }
-
-  const getData = async() =>{
-    try {
-      const res = await axios.get("http://localhost:3000/getFiles");
-      return res;
-    } catch (error) {
-      console.log("error while sending request : ",error)
-    }
+    setFile(undefined)
   }
 
   useEffect(() => {
@@ -56,14 +55,15 @@ const Home = () => {
     axios.get("http://localhost:3000/getFiles")
     .then(response =>{
       console.log("Status of search :",response.data.status);
-      if(response.data.status !== "error"){
-        setData(response.data.dataArray)
+      if(response.data.searchStatus === true){
+        imgPathArray = response.data.dataArray
       }
+      console.log("array of docs --- ", imgPathArray)
     })
     .catch(err => console.log("error while sending request -- ",err))
     
-    console.log("array of docs --- ",data)
-  }, [])
+    
+  }, [file,imgPathArray])
 
   
   return (
@@ -76,25 +76,28 @@ const Home = () => {
                 <button type="submit" onClick={submitHandler}>upload</button>
               </form>
             </div>
-            <Img imgPath={"http://localhost:3000//uploadedFile-1706769191404.jpg"}/>
-            <Img imgPath={"http://localhost:3000//uploadedFile-1706769191404.jpg"}/>
-            <Img imgPath={"http://localhost:3000//uploadedFile-1706769191404.jpg"}/>
-            <Img imgPath={"http://localhost:3000//uploadedFile-1706769191404.jpg"}/>
-            <Img imgPath={"http://localhost:3000//uploadedFile-1706769191404.jpg"}/>
-            <Img imgPath={"http://localhost:3000//uploadedFile-1706769191404.jpg"}/>
-            <Img imgPath={"http://localhost:3000//uploadedFile-1706769191404.jpg"}/>
-            <Img imgPath={"http://localhost:3000//uploadedFile-1706769191404.jpg"}/>
-            <Img imgPath={"http://localhost:3000//uploadedFile-1706769191404.jpg"}/>
-            <Img imgPath={"http://localhost:3000//uploadedFile-1706769191404.jpg"}/>
-            <Img imgPath={"http://localhost:3000//uploadedFile-1706769191404.jpg"}/>
-            <Img imgPath={"http://localhost:3000//uploadedFile-1706769191404.jpg"}/>
-            <Img imgPath={"http://localhost:3000//uploadedFile-1706769191404.jpg"}/>
-            <Img imgPath={"http://localhost:3000//uploadedFile-1706769191404.jpg"}/>
-            <Img imgPath={"http://localhost:3000//uploadedFile-1706769191404.jpg"}/>
-            <Img imgPath={"http://localhost:3000//uploadedFile-1706769191404.jpg"}/>
-            <Img imgPath={"http://localhost:3000//uploadedFile-1706769191404.jpg"}/>
-            <Img imgPath={"http://localhost:3000//uploadedFile-1706769191404.jpg"}/>
-            <Img imgPath={"http://localhost:3000//uploadedFile-1706769191404.jpg"}/>
+            {/* {imgPathArray.forEach( () =>{
+              <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
+            })} */}
+            <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
+            <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
+            <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
+            <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
+            <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
+            <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
+            <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
+            <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
+            <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
+            <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
+            <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
+            <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
+            <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
+            <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
+            <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
+            <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
+            <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
+            <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
+            <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
         </div>
     </>
   )

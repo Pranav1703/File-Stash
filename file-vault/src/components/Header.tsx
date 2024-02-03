@@ -9,7 +9,7 @@ const Header = () => {
     navigate("/login")
     
   }
-  console.log(current_user)
+  console.log("online user ---> ",current_user)
   return (
     <div className = "header">
       <h2>File valut</h2>
