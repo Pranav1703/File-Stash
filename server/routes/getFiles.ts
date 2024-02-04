@@ -9,7 +9,7 @@ router.get("/",async(req,res)=>{
         console.log("data from DB-----------------------------------------\n",allFiles)
         const filteredFilesArray = allFiles.map((element) =>{
             return {
-                id: parseInt(element._id.toString(),10),
+                id: element._id.toString(),
                 file: element.file,
                 user: element.user,
                 data: element.createdAt.toString().substring(4,15).split(" ").join("-"),

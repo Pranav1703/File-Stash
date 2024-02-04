@@ -11,7 +11,7 @@ const Home = () => {
   const [file,setFile] = useState<File | undefined>();
 
   type fileData = {
-    id: number,
+    id: string,
     file: string,
     user: string,
     date: string,
@@ -103,9 +103,9 @@ const Home = () => {
                 <button type="submit" onClick={submitHandler}>upload</button>
               </form>
             </div>
-            { imgDataArray?.map( (element:fileData,key:number) =>
+            { imgDataArray?.map( (element:fileData) =>
 
-               <Img key = {key} imgPath={`http://localhost:3000/${element.file}`}/>
+               <Img key = {element.id} imgPath={`http://localhost:3000/${element.file}`}/>
   
             )}
             
