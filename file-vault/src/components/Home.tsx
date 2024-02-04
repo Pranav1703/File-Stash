@@ -1,18 +1,26 @@
 import Header from "./Header"
 import Img from "./Img"
 import "../styles/home.css"
-import { useEffect, useState } from "react"
-import axios from "axios"
+import { ReactNode, useEffect, useState } from "react"
+import axios, { AxiosResponse } from "axios"
 import {current_user} from "./Login"
 
 
 const Home = () => {
   
-  const [file,setFile] = useState<File>();
+  const [file,setFile] = useState<File | undefined>();
 
-  // const [data,setData] = useState()
+  type fileData = {
+    id: number,
+    file: string,
+    user: string,
+    date: string,
+    time: string,
+  }
+  
+  const [imgDataArray,setImgDataArray] = useState<fileData[]>([])
 
-  let imgPathArray: Array<Object> = []
+  // let imgPathArray:fileData[] = []
 
 
   const fileChange = (e:React.ChangeEvent<HTMLInputElement>)=>{
@@ -50,20 +58,39 @@ const Home = () => {
     setFile(undefined)
   }
 
+  const getData = async() =>{
+    try {
+      const response = await axios.get("http://localhost:3000/getFiles")
+      console.log("Status of search :",response.data.searchStatus);
+      if(response.data.searchStatus === true){
+
+        setImgDataArray(response.data.dataArray)
+        console.log("array of docs --- ", imgDataArray)
+      }
+      // setImgDataArray(response.data.dataArray)
+      // console.log("array of docs --- ", imgDataArray)
+      
+    } catch (error) {
+      console.log("error while sending request -- ",error)
+    }
+    
+  }
+
   useEffect(() => {
     
-    axios.get("http://localhost:3000/getFiles")
-    .then(response =>{
-      console.log("Status of search :",response.data.status);
-      if(response.data.searchStatus === true){
-        imgPathArray = response.data.dataArray
-      }
-      console.log("array of docs --- ", imgPathArray)
-    })
-    .catch(err => console.log("error while sending request -- ",err))
-    
-    
-  }, [file,imgPathArray])
+    // axios.get("http://localhost:3000/getFiles")
+    // .then(response =>{
+    //   console.log("Status of search :",response.data.searchStatus);
+    //   if(response.data.searchStatus === true){
+    //     imgPathArray = response.data.dataArray
+    //     // setImgDataArray(response.data.dataArray)
+    //   }
+    //   console.log("array of docs --- ", imgPathArray)
+    //   // console.log("array of docs --- ", imgDataArray)
+    // })
+    // .catch(err => console.log("error while sending request -- ",err))
+    getData()
+  }, [file])
 
   
   return (
@@ -76,9 +103,13 @@ const Home = () => {
                 <button type="submit" onClick={submitHandler}>upload</button>
               </form>
             </div>
-            {/* {imgPathArray.forEach( () =>{
-              <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
-            })} */}
+            { imgDataArray?.map( (element:fileData,key:number) =>
+
+               <Img key = {key} imgPath={`http://localhost:3000/${element.file}`}/>
+  
+            )}
+            
+            {/* <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
             <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
             <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
             <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
@@ -96,8 +127,7 @@ const Home = () => {
             <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
             <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
             <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
-            <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
-            <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
+            <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/> */}
         </div>
     </>
   )
