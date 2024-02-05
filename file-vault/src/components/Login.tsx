@@ -38,7 +38,7 @@ const Login = () => {
                 username:name,
                 password:pass,
             })
-            console.log(response)
+            console.log("login response---",response)
             if(response.data.exists===true){
                 // setCurrentUser(response.data.username)
                 current_user = response.data.username;

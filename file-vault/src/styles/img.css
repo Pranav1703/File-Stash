@@ -8,6 +8,7 @@
 }
 
 .img:hover{
+    
     border: 2px solid #070707;
     transform: scale(1.05);
     

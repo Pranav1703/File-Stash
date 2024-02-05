@@ -12,7 +12,7 @@ router.get("/",async(req,res)=>{
                 id: element._id.toString(),
                 file: element.file,
                 user: element.user,
-                data: element.createdAt.toString().substring(4,15).split(" ").join("-"),
+                date: element.createdAt.toString().substring(4,15).split(" ").join("-"),
                 time: element.createdAt.toString().substring(16,24),
 
             }

@@ -63,11 +63,12 @@ const Home = () => {
       const response = await axios.get("http://localhost:3000/getFiles")
       console.log("Status of search :",response.data.searchStatus);
       if(response.data.searchStatus === true){
-
+        console.log(response.data.dataArray)
         setImgDataArray(response.data.dataArray)
-        console.log("array of docs --- ", imgDataArray)
+        
       }
       // setImgDataArray(response.data.dataArray)
+
       // console.log("array of docs --- ", imgDataArray)
       
     } catch (error) {
@@ -92,7 +93,6 @@ const Home = () => {
     getData()
   }, [file])
 
-  
   return (
     <>
         <Header/>
@@ -105,7 +105,12 @@ const Home = () => {
             </div>
             { imgDataArray?.map( (element:fileData) =>
 
-               <Img key = {element.id} imgPath={`http://localhost:3000/${element.file}`}/>
+               <Img key = {element.id} 
+                    imgPath={`http://localhost:3000/${element.file}`} 
+                    user={element.user} 
+                    date={element.date} 
+                    time={element.time}
+                />
   
             )}
             
