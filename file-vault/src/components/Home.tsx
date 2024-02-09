@@ -1,8 +1,8 @@
 import Header from "./Header"
 import Img from "./Img"
 import "../styles/home.css"
-import { ReactNode, useEffect, useState } from "react"
-import axios, { AxiosResponse } from "axios"
+import { useEffect, useState } from "react"
+import axios from "axios"
 import {current_user} from "./Login"
 
 
@@ -90,7 +90,9 @@ const Home = () => {
     //   // console.log("array of docs --- ", imgDataArray)
     // })
     // .catch(err => console.log("error while sending request -- ",err))
-    getData()
+
+    getData();
+
   }, [file])
 
   return (
