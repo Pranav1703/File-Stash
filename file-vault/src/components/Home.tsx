@@ -1,5 +1,5 @@
 import Header from "./Header"
-import Img from "./Img"
+import Card from "./Card"
 import "../styles/home.css"
 import { useEffect, useState } from "react"
 import axios from "axios"
@@ -18,7 +18,7 @@ const Home = () => {
     time: string,
   }
   
-  const [imgDataArray,setImgDataArray] = useState<fileData[]>([])
+  const [dataArray,setDataArray] = useState<fileData[]>([])
 
   // let imgPathArray:fileData[] = []
 
@@ -63,8 +63,8 @@ const Home = () => {
       const response = await axios.get("http://localhost:3000/getFiles")
       console.log("Status of search :",response.data.searchStatus);
       if(response.data.searchStatus === true){
-        console.log(response.data.dataArray)
-        setImgDataArray(response.data.dataArray)
+        console.log("response array:",response.data.dataArray)
+        setDataArray(response.data.dataArray)
         
       }
       // setImgDataArray(response.data.dataArray)
@@ -78,23 +78,10 @@ const Home = () => {
   }
 
   useEffect(() => {
-    
-    // axios.get("http://localhost:3000/getFiles")
-    // .then(response =>{
-    //   console.log("Status of search :",response.data.searchStatus);
-    //   if(response.data.searchStatus === true){
-    //     imgPathArray = response.data.dataArray
-    //     // setImgDataArray(response.data.dataArray)
-    //   }
-    //   console.log("array of docs --- ", imgPathArray)
-    //   // console.log("array of docs --- ", imgDataArray)
-    // })
-    // .catch(err => console.log("error while sending request -- ",err))
 
     getData();
-
+    
   }, [file])
-
   return (
     <>
         <Header/>
@@ -105,9 +92,9 @@ const Home = () => {
                 <button type="submit" onClick={submitHandler}>upload</button>
               </form>
             </div>
-            { imgDataArray?.map( (element:fileData) =>
+            { dataArray?.map( (element:fileData) =>
 
-               <Img key = {element.id} 
+               <Card key = {element.id} 
                     imgPath={`http://localhost:3000/${element.file}`} 
                     user={element.user} 
                     date={element.date} 
@@ -115,7 +102,6 @@ const Home = () => {
                 />
   
             )}
-            
             {/* <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
             <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
             <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>

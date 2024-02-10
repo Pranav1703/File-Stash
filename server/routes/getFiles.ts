@@ -6,7 +6,8 @@ const router = express.Router();
 router.get("/",async(req,res)=>{
     try {
         const allFiles = await File.find();
-        console.log("data from DB-----------------------------------------\n",allFiles)
+        console.log("data from DB-----------------------------------------\n",allFiles);
+        console.log(allFiles[0].createdAt.toString())
         const filteredFilesArray = allFiles.map((element) =>{
             return {
                 id: element._id.toString(),

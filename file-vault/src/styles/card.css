@@ -1,4 +1,4 @@
-.img{
+.card{
     border: 2px solid white ;
     height: 300px;
     width: 300px;
@@ -7,7 +7,17 @@
     transition: 0.5s;
 }
 
-.img:hover{
+.img{
+    width: 300px;
+    height: 200px;
+}
+
+.textFile{
+    height: 200px;
+    margin-left: 50px;   
+}
+
+.card:hover{
     
     border: 2px solid #070707;
     transform: scale(1.05);

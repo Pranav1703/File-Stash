@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 //     setter: Function
 // }
 
-let current_user:string = "init"
+let current_user:string = "---"
 
 const Login = () => {
     const [name,setName] = useState<string>("");
