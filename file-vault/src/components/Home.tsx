@@ -63,6 +63,7 @@ const Home = () => {
       const response = await axios.get("http://localhost:3000/getFiles")
       console.log("Status of search :",response.data.searchStatus);
       if(response.data.searchStatus === true){
+
         console.log("response array:",response.data.dataArray)
         setDataArray(response.data.dataArray)
         
@@ -100,27 +101,8 @@ const Home = () => {
                     date={element.date} 
                     time={element.time}
                 />
-  
+
             )}
-            {/* <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
-            <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
-            <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
-            <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
-            <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
-            <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
-            <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
-            <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
-            <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
-            <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
-            <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
-            <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
-            <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
-            <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
-            <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
-            <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
-            <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
-            <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/>
-            <Img imgPath={"http://localhost:3000/uploadedFile-1706769191404.jpg"}/> */}
         </div>
     </>
   )

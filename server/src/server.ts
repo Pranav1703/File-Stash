@@ -29,6 +29,11 @@ app.get("/",(req,res)=>{
     res.send("server working")
 })
 
+// app.get("/:filename",(req,res)=>{
+//     console.log(req.params)
+//     console.log(req)
+//     res.json("working")
+// })
 
 app.use("/login",loginRouter)
 app.use("/signup",signupRouter)

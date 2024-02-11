@@ -1,6 +1,8 @@
-import React from 'react'
+import axios from "axios"
 import "../styles/card.css"
- 
+import fileDownload from "js-file-download"
+import { blob } from "stream/consumers"
+
 type imgProps = {
   imgPath:string,
   user: string,
@@ -9,20 +11,32 @@ type imgProps = {
 }
 
 const Card = ({imgPath,user,date,time}:imgProps) => {
-
-  const ext = imgPath.slice(imgPath.indexOf(".")+1);
-  console.log("extention := ",ext);
-
-  let imgExt:boolean = false;
+  const file = imgPath.split("/").pop() as string;
   
+  const ext = file.slice(file.indexOf(".")+1);
+  
+  const imgExt = (ext === "png" || ext === "jpeg" || ext === "jpg" || ext === "gif" )?true:false
 
-  if(ext === "png" || ext === "jpeg" || ext === "jpg" || ext === "gif" ){
-    imgExt = true;
+  const download = async(url: string,name: string)=>{
+    try {
+      const response = await axios.get(url,{responseType: 'blob'})
+      console.log(response)
+
+      fileDownload(response.data,name)
+    
+
+    } catch (error) {
+      console.log("error while sending request or while downloading the file-----",error);
+    }
+  }
+
+  const clickHandler = ()=>{
+    download(imgPath,file)
   }
 
   return (
     <div className='card'>
-        <a href={imgPath} download="download" target='_blank' rel='noreferrer'>
+        
         {imgExt? 
             (
 
@@ -34,7 +48,7 @@ const Card = ({imgPath,user,date,time}:imgProps) => {
             
             )
           }
-        </a>
+        <button onClick={clickHandler}>download</button>
         <p>Uploaded By: {user}</p>
         <p>upload Date: {date}</p>
         <p>Upload Time: {time}</p>
