@@ -23,3 +23,44 @@
     transform: scale(1.05);
     
 }
+
+.info{
+    display: grid;
+    grid-template-columns: 2fr 0.5fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    padding: 5px;
+    padding-bottom: 0px;
+}
+
+.userInfo{
+    grid-area: 1 / 1 / 1 / 2;
+    padding: 5px;
+    
+}   
+
+.date{
+    grid-area: 2 / 1 / 2 / 2;
+    padding: 5px;
+}
+
+.time{
+    grid-area: 3 / 1 / 3 / 2;
+    padding: 5px;
+}
+
+.btns{
+    grid-area: 1 / 2 / span 3 / 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.downloadBtn{
+    border: 2px solid gray;
+    border-radius: 5px;
+}
+
+.deleteBtn{
+    border: 2px solid gray;
+    border-radius: 5px;
+}

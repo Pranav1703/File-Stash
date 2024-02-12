@@ -3,7 +3,7 @@ import {File} from "../models/file.js"
 
 const router = express.Router();
 
-router.get("/",async(req,res)=>{
+router.get("/all",async(req,res)=>{
     try {
         const allFiles = await File.find();
         console.log("data from DB-----------------------------------------\n",allFiles);
@@ -41,5 +41,21 @@ router.get("/",async(req,res)=>{
         // res.json("null")
     }
 })
+
+router.post("/:filename",async(req,res)=>{
+    try {
+        
+        console.log(req.params)
+        const count = await File.deleteOne({file: req.params.filename})
+        console.log("file deleted ---", count)
+        res.json("data recieved")
+
+    } catch (error) {
+
+        console.log("error when deleting a file ---",error);
+
+    }
+})
+
 
 export default router 

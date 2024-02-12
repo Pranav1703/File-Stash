@@ -6,16 +6,13 @@
 }
 
 .addFile{
-    border: 2px solid white ;
     height: 300px;
     width: 300px;
     margin: 5px;
     padding: 5px;
-    transition: 0.5s;
+
 }
 
-.addFile:hover{
-    border: 2px solid #070707;
-    transform: scale(1.05);
+/* .addFile>form>input{
     
-}
+} */

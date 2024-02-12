@@ -15,7 +15,7 @@ router.post("/",async(req,res)=>{
                 res.json("exists")
     
             }else{
-                const newUser = await User.create({
+                await User.create({
                     username: req.body.username,
                     password: req.body.password,
                 })

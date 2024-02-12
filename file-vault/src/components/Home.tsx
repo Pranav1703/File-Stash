@@ -4,7 +4,7 @@ import "../styles/home.css"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import {current_user} from "./Login"
-
+import { IoMdAdd } from "react-icons/io";
 
 const Home = () => {
   
@@ -33,7 +33,7 @@ const Home = () => {
   }
 
   const submitHandler = async(e:React.MouseEvent<HTMLButtonElement, MouseEvent>)=>{
-    e.preventDefault()
+    e.preventDefault();
 
     try {
       const formData = new FormData();
@@ -60,9 +60,9 @@ const Home = () => {
 
   const getData = async() =>{
     try {
-      const response = await axios.get("http://localhost:3000/getFiles")
+      const response = await axios.get("http://localhost:3000/files/all")
       console.log("Status of search :",response.data.searchStatus);
-      if(response.data.searchStatus === true){
+      if(response.data.searchStatus === true && response.data.dataArray.length!== dataArray.length){
 
         console.log("response array:",response.data.dataArray)
         setDataArray(response.data.dataArray)
@@ -82,7 +82,7 @@ const Home = () => {
 
     getData();
     
-  }, [file])
+  }, [file,dataArray])
   return (
     <>
         <Header/>
@@ -90,9 +90,10 @@ const Home = () => {
             <div className="addFile">
               <form >
                 <input type="file" multiple={false} onChange={fileChange}/>
-                <button type="submit" onClick={submitHandler}>upload</button>
+                <button type="submit" onClick={submitHandler}><IoMdAdd size={260} /></button>
               </form>
             </div>
+            
             { dataArray?.map( (element:fileData) =>
 
                <Card key = {element.id} 
@@ -101,7 +102,6 @@ const Home = () => {
                     date={element.date} 
                     time={element.time}
                 />
-
             )}
         </div>
     </>

@@ -5,7 +5,8 @@ import mongoose from "mongoose"
 import loginRouter from "../routes/login.js"
 import signupRouter from "../routes/signup.js"
 import uploadRouter from "../routes/upload.js"
-import getFilesRouter from "../routes/getFiles.js"
+import filesRouter from "../routes/files.js"
+
 
 const port = 3000;
 
@@ -38,6 +39,6 @@ app.get("/",(req,res)=>{
 app.use("/login",loginRouter)
 app.use("/signup",signupRouter)
 app.use("/upload",uploadRouter)
-app.use("/getFiles",getFilesRouter)
+app.use("/files",filesRouter)
 
 

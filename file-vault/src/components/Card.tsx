@@ -1,7 +1,8 @@
 import axios from "axios"
 import "../styles/card.css"
 import fileDownload from "js-file-download"
-import { blob } from "stream/consumers"
+import { LiaDownloadSolid } from "react-icons/lia";
+import { FaTrashAlt } from "react-icons/fa";
 
 type imgProps = {
   imgPath:string,
@@ -11,6 +12,7 @@ type imgProps = {
 }
 
 const Card = ({imgPath,user,date,time}:imgProps) => {
+  
   const file = imgPath.split("/").pop() as string;
   
   const ext = file.slice(file.indexOf(".")+1);
@@ -18,6 +20,7 @@ const Card = ({imgPath,user,date,time}:imgProps) => {
   const imgExt = (ext === "png" || ext === "jpeg" || ext === "jpg" || ext === "gif" )?true:false
 
   const download = async(url: string,name: string)=>{
+    
     try {
       const response = await axios.get(url,{responseType: 'blob'})
       console.log(response)
@@ -30,8 +33,19 @@ const Card = ({imgPath,user,date,time}:imgProps) => {
     }
   }
 
-  const clickHandler = ()=>{
-    download(imgPath,file)
+  const deleteFile = async()=>{
+    
+    try {
+
+     const response = await axios.post(`http://localhost:3000/files/${file}`)
+    console.log(response) 
+    
+    } catch (error) {
+
+      console.log("error when trying to delete file ---- ",error)
+
+    }
+    console.log("delete btn presedn",file);
   }
 
   return (
@@ -48,10 +62,23 @@ const Card = ({imgPath,user,date,time}:imgProps) => {
             
             )
           }
-        <button onClick={clickHandler}>download</button>
-        <p>Uploaded By: {user}</p>
-        <p>upload Date: {date}</p>
-        <p>Upload Time: {time}</p>
+          <div className="info">
+              
+              <p className="userInfo">Uploaded By: {user}</p>
+              <p className="date">Upload Date: {date}</p>
+              <p className="time">Upload Time: {time}</p>
+     
+              <div className="btns">
+                <button className='downloadBtn' onClick={()=>download(imgPath,file)}> 
+                  <LiaDownloadSolid size={20}/> 
+                </button>
+                
+                <button className="deleteBtn" onClick={()=>deleteFile()}> 
+                  <FaTrashAlt size={20}/> 
+                </button>
+              </div>
+
+          </div>
     </div>
   )
 }
