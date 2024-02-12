@@ -28,13 +28,12 @@ const Home = () => {
     if(!file){
       console.log("no file provided")
     }
-    console.log("file set",file);
+
     setFile(file)
   }
 
   const submitHandler = async(e:React.MouseEvent<HTMLButtonElement, MouseEvent>)=>{
-    e.preventDefault();
-
+    e.preventDefault()
     try {
       const formData = new FormData();
 
@@ -54,7 +53,7 @@ const Home = () => {
     } catch (error) {
       console.log("post request failed :=",error)
     }
-    //enctype="multipart/form-data"
+    
     setFile(undefined)
   }
 
@@ -62,8 +61,9 @@ const Home = () => {
     try {
       const response = await axios.get("http://localhost:3000/files/all")
       console.log("Status of search :",response.data.searchStatus);
+      console.log("function called in useEffect hook")
       if(response.data.searchStatus === true && response.data.dataArray.length!== dataArray.length){
-
+        console.log("dataArray is set!")
         console.log("response array:",response.data.dataArray)
         setDataArray(response.data.dataArray)
         
@@ -79,8 +79,10 @@ const Home = () => {
   }
 
   useEffect(() => {
-
-    getData();
+    
+    
+      getData();
+    
     
   }, [file,dataArray])
   return (

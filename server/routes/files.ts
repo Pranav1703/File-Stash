@@ -1,5 +1,6 @@
 import express from "express"
 import {File} from "../models/file.js"
+import fs from "fs"
 
 const router = express.Router();
 
@@ -46,9 +47,27 @@ router.post("/:filename",async(req,res)=>{
     try {
         
         console.log(req.params)
+        
         const count = await File.deleteOne({file: req.params.filename})
         console.log("file deleted ---", count)
-        res.json("data recieved")
+
+        const path = `./storage/${req.params.filename}`
+
+        fs.unlink(path,(err)=>{
+            if(err){
+
+                console.log("error when trying to delete the file",err)
+                res.json("delete failed")
+
+            }else{
+                console.log("file deleted from storage.")
+                res.json("delete success")
+            }
+        })
+
+       
+
+        
 
     } catch (error) {
 

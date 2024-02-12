@@ -38,7 +38,7 @@ const Card = ({imgPath,user,date,time}:imgProps) => {
     try {
 
      const response = await axios.post(`http://localhost:3000/files/${file}`)
-    console.log(response) 
+    console.log(response.data) 
     
     } catch (error) {
 
