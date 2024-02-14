@@ -18,12 +18,11 @@ const Home = () => {
     time: string,
   }
   
-  const [dataArray,setDataArray] = useState<fileData[]>([])
-
-  // let imgPathArray:fileData[] = []
+  const [dataArray,setDataArray] = useState<fileData[] | []>([])
 
 
   const fileChange = (e:React.ChangeEvent<HTMLInputElement>)=>{
+  
     const file = e.target.files![0];
     if(!file){
       console.log("no file provided")
@@ -53,45 +52,82 @@ const Home = () => {
     } catch (error) {
       console.log("post request failed :=",error)
     }
-    
+    const fileInput = document.getElementById("fileInput") as HTMLInputElement | null;
+    if (fileInput) {
+      fileInput.value = ''; 
+    }
+
     setFile(undefined)
+    console.log("file state after submiting ::: ",file)
+ 
   }
 
   const getData = async() =>{
+
     try {
       const response = await axios.get("http://localhost:3000/files/all")
+      
       console.log("Status of search :",response.data.searchStatus);
       console.log("function called in useEffect hook")
-      if(response.data.searchStatus === true && response.data.dataArray.length!== dataArray.length){
-        console.log("dataArray is set!")
+      
+      
+      if(response.data.searchStatus === true && response.data.dataArray.length!== dataArray!.length){
+        
+        console.log("db data length--->",response.data.dataArray.length, "frontend data length--->",dataArray.length )
+        
         console.log("response array:",response.data.dataArray)
         setDataArray(response.data.dataArray)
+        console.log("dataArray is set!")
         
+        
+      }else if(response.data.searchStatus === false && dataArray.length!==0){
+        setDataArray([]);
       }
-      // setImgDataArray(response.data.dataArray)
+      
+      console.log("dataArray in client-----",dataArray)
 
       // console.log("array of docs --- ", imgDataArray)
       
     } catch (error) {
-      console.log("error while sending request -- ",error)
+      console.log("error while sending request or when checking the response -- ",error)
     }
     
   }
 
+  const deleteFile = async(filename: string)=>{
+    
+    try {
+
+     const response = await axios.post(`http://localhost:3000/files/${filename}`)
+    console.log(response.data) 
+    
+    } catch (error) {
+
+      console.log("error when trying to delete file ---- ",error)
+
+    }
+    console.log("delete btn presedn",filename);
+    getData();
+  }
+
   useEffect(() => {
     
-    
+      console.log("file state in useEffect",file);
+      
       getData();
-    
+      
+
     
   }, [file,dataArray])
+
+  
   return (
     <>
         <Header/>
         <div className="main">
             <div className="addFile">
               <form >
-                <input type="file" multiple={false} onChange={fileChange}/>
+                <input id ="fileInput" type="file" multiple={false} onChange={fileChange}/>
                 <button type="submit" onClick={submitHandler}><IoMdAdd size={260} /></button>
               </form>
             </div>
@@ -103,6 +139,7 @@ const Home = () => {
                     user={element.user} 
                     date={element.date} 
                     time={element.time}
+                    delFunc={deleteFile}
                 />
             )}
         </div>

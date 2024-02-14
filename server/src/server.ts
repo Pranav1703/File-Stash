@@ -30,15 +30,7 @@ app.get("/",(req,res)=>{
     res.send("server working")
 })
 
-// app.get("/:filename",(req,res)=>{
-//     console.log(req.params)
-//     console.log(req)
-//     res.json("working")
-// })
-
-app.use("/login",loginRouter)
-app.use("/signup",signupRouter)
-app.use("/upload",uploadRouter)
-app.use("/files",filesRouter)
-
-
+app.use("/login",loginRouter);
+app.use("/signup",signupRouter);
+app.use("/upload",uploadRouter);
+app.use("/files",filesRouter);

@@ -9,13 +9,14 @@ type imgProps = {
   user: string,
   date: string,
   time: string,
+  delFunc: (filename: string) => Promise<void>  
 }
 
-const Card = ({imgPath,user,date,time}:imgProps) => {
+const Card = ({imgPath,user,date,time,delFunc}:imgProps) => {
   
-  const file = imgPath.split("/").pop() as string;
+  const file = imgPath.split("/").pop() as string;  //filename with extention
   
-  const ext = file.slice(file.indexOf(".")+1);
+  const ext = file.slice(file.indexOf(".")+1); // extention
   
   const imgExt = (ext === "png" || ext === "jpeg" || ext === "jpg" || ext === "gif" )?true:false
 
@@ -33,20 +34,20 @@ const Card = ({imgPath,user,date,time}:imgProps) => {
     }
   }
 
-  const deleteFile = async()=>{
+  // const deleteFile = async()=>{
     
-    try {
+  //   try {
 
-     const response = await axios.post(`http://localhost:3000/files/${file}`)
-    console.log(response.data) 
+  //    const response = await axios.post(`http://localhost:3000/files/${file}`)
+  //   console.log(response.data) 
     
-    } catch (error) {
+  //   } catch (error) {
 
-      console.log("error when trying to delete file ---- ",error)
+  //     console.log("error when trying to delete file ---- ",error)
 
-    }
-    console.log("delete btn presedn",file);
-  }
+  //   }
+  //   console.log("delete btn presedn",file);
+  // }
 
   return (
     <div className='card'>
@@ -63,7 +64,7 @@ const Card = ({imgPath,user,date,time}:imgProps) => {
             )
           }
           <div className="info">
-              
+              <p className="filename">File name: {file}</p>
               <p className="userInfo">Uploaded By: {user}</p>
               <p className="date">Upload Date: {date}</p>
               <p className="time">Upload Time: {time}</p>
@@ -73,7 +74,7 @@ const Card = ({imgPath,user,date,time}:imgProps) => {
                   <LiaDownloadSolid size={20}/> 
                 </button>
                 
-                <button className="deleteBtn" onClick={()=>deleteFile()}> 
+                <button className="deleteBtn" onClick={()=>delFunc(file)}> 
                   <FaTrashAlt size={20}/> 
                 </button>
               </div>
