@@ -1,8 +1,14 @@
+body{
+    background-color: #3c4145;
+}
+
 .main{
     display: flex;
     flex-wrap: wrap;
-    margin: 20px;
-    padding-left: 20px;
+    padding: 20px;
+    margin-left: 10px;
+    margin-right: 0;
+    
 }
 
 .addFile{
@@ -10,9 +16,26 @@
     width: 300px;
     margin: 5px;
     padding: 5px;
-
+    display: block;
 }
 
-/* .addFile>form>input{
-    
-} */
+.preview{
+    width: 300px;
+}
+
+input[type=file]::file-selector-button {
+    margin-right: 20px;
+    border: none;
+    background: #353838;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+    font-family: 'Ubuntu Mono', monospace;
+
+  }
+  
+  input[type=file]::file-selector-button:hover {
+    background: #090909;
+  }

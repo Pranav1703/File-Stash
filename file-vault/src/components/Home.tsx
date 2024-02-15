@@ -5,10 +5,12 @@ import { useEffect, useState } from "react"
 import axios from "axios"
 import {current_user} from "./Login"
 import { IoMdAdd } from "react-icons/io";
+import { ImGift } from "react-icons/im"
 
 const Home = () => {
   
   const [file,setFile] = useState<File | undefined>();
+  
 
   type fileData = {
     id: string,
@@ -19,7 +21,7 @@ const Home = () => {
   }
   
   const [dataArray,setDataArray] = useState<fileData[] | []>([])
-
+  const [url,setUrl] = useState<string>("")
 
   const fileChange = (e:React.ChangeEvent<HTMLInputElement>)=>{
   
@@ -29,6 +31,11 @@ const Home = () => {
     }
 
     setFile(file)
+    console.log("file state changed",file);
+
+    const url = URL.createObjectURL(file);
+    setUrl(url);
+
   }
 
   const submitHandler = async(e:React.MouseEvent<HTMLButtonElement, MouseEvent>)=>{
@@ -56,10 +63,10 @@ const Home = () => {
     if (fileInput) {
       fileInput.value = ''; 
     }
-
+   
     setFile(undefined)
-    console.log("file state after submiting ::: ",file)
- 
+    setUrl("")
+  
   }
 
   const getData = async() =>{
@@ -73,15 +80,13 @@ const Home = () => {
       
       if(response.data.searchStatus === true && response.data.dataArray.length!== dataArray!.length){
         
-        console.log("db data length--->",response.data.dataArray.length, "frontend data length--->",dataArray.length )
-        
-        console.log("response array:",response.data.dataArray)
         setDataArray(response.data.dataArray)
         console.log("dataArray is set!")
         
-        
       }else if(response.data.searchStatus === false && dataArray.length!==0){
+
         setDataArray([]);
+
       }
       
       console.log("dataArray in client-----",dataArray)
@@ -99,38 +104,43 @@ const Home = () => {
     try {
 
      const response = await axios.post(`http://localhost:3000/files/${filename}`)
-    console.log(response.data) 
+     console.log(response.data) 
     
     } catch (error) {
 
       console.log("error when trying to delete file ---- ",error)
 
     }
-    console.log("delete btn presedn",filename);
+    
     getData();
   }
-
+  
+  
+  
   useEffect(() => {
     
-      console.log("file state in useEffect",file);
-      
-      getData();
-      
-
     
-  }, [file,dataArray])
+      getData();
 
+      // const blob = new Blob([JSON.stringify(file?.arrayBuffer)],{type:"image/jpeg"})
+    
+  }, [file,dataArray]);
+  
+  console.log("blob converted to url---",url)
   
   return (
     <>
         <Header/>
         <div className="main">
+
             <div className="addFile">
               <form >
                 <input id ="fileInput" type="file" multiple={false} onChange={fileChange}/>
-                <button type="submit" onClick={submitHandler}><IoMdAdd size={260} /></button>
+                {<img className="preview" src={url}/>}
+                {file && <button type="submit" onClick={submitHandler}><IoMdAdd size={25} /></button>}
               </form>
-            </div>
+              
+            </div> 
             
             { dataArray?.map( (element:fileData) =>
 
@@ -141,6 +151,7 @@ const Home = () => {
                     time={element.time}
                     delFunc={deleteFile}
                 />
+
             )}
         </div>
     </>

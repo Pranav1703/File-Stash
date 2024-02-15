@@ -1,5 +1,8 @@
 *{
   margin: 0;
-  background-color: #DBE2EF;
-  font-family: 'Ubuntu Mono', monospace;
+  font-family: 'Ubuntu Mono', monospace;  
+}
+
+body{
+  max-width: 99vmax;
 }

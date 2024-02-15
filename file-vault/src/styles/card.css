@@ -1,18 +1,24 @@
 .card{
-    border: 2px solid white ;
+    
+    border-radius: 15px;
     height: 300px;
     width: 300px;
     margin: 5px;
     padding: 5px;
     transition: 0.5s;
+    box-shadow: 4.0px 8.0px 8.0px hsl(0deg 0% 0% / 0.38);
+    
+    background-color: #495057;
 }
 p{
     font-size: small;
+    color: #E9ECEF;
 }
 
 .img{
     width: 300px;
     height: 200px;
+    border-radius: 15px;
 }
 
 .textFile{
@@ -22,18 +28,19 @@ p{
 
 .card:hover{
     
-    border: 2px solid #070707;
-    transform: scale(1.05);
-    
+    border: 1px solid #343A40;
+    transform: scale(1.02);
+    box-shadow: 5.0px 12.0px 12.0px hsl(0deg 0% 0% / 0.38);
 }
 
 .info{
     display: grid;
-    grid-template-columns: 2fr 0.5fr;
+    background-color: #495057;
+    grid-template-columns: 2fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr;
-    column-gap: 0.5px;
-    padding-bottom: 0px;
     height: 33%;
+    border-radius: 15px;
+    
 }
 
 .filename{
@@ -57,19 +64,36 @@ p{
 }
 
 .btns{
-
     grid-area: 2 / 2 / span 3 / 2;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
+    margin-bottom: 8px;
 }
 
 .downloadBtn{
-    border: 2px solid gray;
+    border: 0px;
     border-radius: 5px;
+    background-color: #495057;
+    transition: 0.5s;
+    margin: 2px;
+}
+
+.downloadBtn:hover{
+    transform: scale(1.05);
+    border: 1px solid rgb(14, 13, 13);
 }
 
 .deleteBtn{
-    border: 2px solid gray;
+    border: 0px;
     border-radius: 5px;
+    background-color: #495057;
+    transition: 0.5s;
 }
+
+.deleteBtn:hover{
+    transform: scale(1.05);
+    border: 1px solid rgb(0, 0, 0);
+}
+
+

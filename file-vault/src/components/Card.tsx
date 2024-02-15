@@ -71,11 +71,11 @@ const Card = ({imgPath,user,date,time,delFunc}:imgProps) => {
      
               <div className="btns">
                 <button className='downloadBtn' onClick={()=>download(imgPath,file)}> 
-                  <LiaDownloadSolid size={20}/> 
+                  <LiaDownloadSolid size={25}/> 
                 </button>
                 
                 <button className="deleteBtn" onClick={()=>delFunc(file)}> 
-                  <FaTrashAlt size={20}/> 
+                  <FaTrashAlt size={25}/> 
                 </button>
               </div>
 

@@ -12,7 +12,7 @@ router.post("/",upload.single("uploadedFile"),async(req,res)=>{
             file: req.file!.filename,
             user: req.body.user,
        })
-       console.log(String(doc.createdAt));
+       console.log("file data when uploading 0------------",req.file)
        res.json({status: "document created in db"});
     } catch (error) {
         console.log("error while saving file-----------",error)
