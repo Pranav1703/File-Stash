@@ -3,6 +3,7 @@ import "../styles/card.css"
 import fileDownload from "js-file-download"
 import { LiaDownloadSolid } from "react-icons/lia";
 import { FaTrashAlt } from "react-icons/fa";
+import { FaFile } from "react-icons/fa";
 
 type imgProps = {
   imgPath:string,
@@ -59,8 +60,10 @@ const Card = ({imgPath,user,date,time,delFunc}:imgProps) => {
 
             ):(
               
-                <img className='textFile' src="src/assets/download-icon.png" alt="download" />
-            
+              <div className="display">
+                <FaFile size={180} />
+              </div>
+              
             )
           }
           <div className="info">

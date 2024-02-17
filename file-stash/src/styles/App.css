@@ -3,6 +3,6 @@
   font-family: 'Ubuntu Mono', monospace;  
 }
 
-body{
-  max-width: 99vmax;
+body::-webkit-scrollbar{
+  display: none;
 }

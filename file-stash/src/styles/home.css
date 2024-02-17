@@ -19,8 +19,12 @@ body{
     display: block;
 }
 
-.preview{
+.imgPreview{
     width: 300px;
+}
+
+.filePreview{
+    margin-left: 70px;
 }
 
 input[type=file]::file-selector-button {

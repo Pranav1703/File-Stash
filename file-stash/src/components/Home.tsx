@@ -4,13 +4,15 @@ import "../styles/home.css"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import {current_user} from "./Login"
-import { IoMdAdd } from "react-icons/io";
-import { ImGift } from "react-icons/im"
+import { FaFile } from "react-icons/fa";
+
 
 const Home = () => {
   
   const [file,setFile] = useState<File | undefined>();
-  
+  const [isImg,setIsImg] = useState<boolean>(false);
+  const [isFile,setIsFile] = useState<boolean>(false);
+
 
   type fileData = {
     id: string,
@@ -28,14 +30,23 @@ const Home = () => {
     const file = e.target.files![0];
     if(!file){
       console.log("no file provided")
+    }else{
+      const ext = file.name.split(".").pop();
+      console.log("extention:",ext)
+
+      if(ext === "png" || ext === "jpeg" || ext === "jpg" || ext === "gif" ){
+        setIsImg(true);
+      }
+      else{
+        setIsFile(true);
+      }
+    
+      setFile(file)
+      console.log("file state changed",file);
+  
+      const url = URL.createObjectURL(file);
+      setUrl(url);
     }
-
-    setFile(file)
-    console.log("file state changed",file);
-
-    const url = URL.createObjectURL(file);
-    setUrl(url);
-
   }
 
   const submitHandler = async(e:React.MouseEvent<HTMLButtonElement, MouseEvent>)=>{
@@ -64,7 +75,9 @@ const Home = () => {
       fileInput.value = ''; 
     }
    
-    setFile(undefined)
+    setFile(undefined);
+    setIsFile(false);
+    setIsImg(false);
     setUrl("")
   
   }
@@ -136,7 +149,13 @@ const Home = () => {
             <div className="addFile">
               <form >
                 <input id ="fileInput" type="file" multiple={false} onChange={fileChange}/>
-                {file && <img className="preview" src={url}/>}
+                {
+                    isFile  && 
+                                    <div className="filePreview">
+                                        <FaFile size={140} />
+                                    </div>
+                }
+                {isImg  && <img className="imgPreview" src={url}/>}
                 {file && <button className="submitBtn" type="submit" onClick={submitHandler}>SUBMIT</button>}
               </form>
               
