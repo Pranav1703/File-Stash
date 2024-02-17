@@ -136,8 +136,8 @@ const Home = () => {
             <div className="addFile">
               <form >
                 <input id ="fileInput" type="file" multiple={false} onChange={fileChange}/>
-                {<img className="preview" src={url}/>}
-                {file && <button type="submit" onClick={submitHandler}><IoMdAdd size={25} /></button>}
+                {file && <img className="preview" src={url}/>}
+                {file && <button className="submitBtn" type="submit" onClick={submitHandler}>SUBMIT</button>}
               </form>
               
             </div> 

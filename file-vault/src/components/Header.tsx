@@ -13,7 +13,7 @@ const Header = () => {
   
   return (
     <div className = "header">
-      <h2>File vault</h2>
+      <h2>File Stash</h2>
       <div className="user">
         <h4>Current User: {current_user}</h4>
         <button className="logoutBtn" type="button" onClick={logOut}>log out</button>

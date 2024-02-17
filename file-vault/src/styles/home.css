@@ -36,6 +36,17 @@ input[type=file]::file-selector-button {
 
   }
   
-  input[type=file]::file-selector-button:hover {
+input[type=file]::file-selector-button:hover {
     background: #090909;
-  }
+}
+
+.addFile>form{
+    height: 300px;
+    display: grid;
+    
+
+}
+
+.submitBtn{
+    margin-left: 10px;
+}
