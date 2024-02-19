@@ -37,3 +37,5 @@ start the server by running this command
 ```
 nodemon dist/src/server.js
 ```
+
+Create an account at http://localhost:5173/signup
