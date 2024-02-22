@@ -156,7 +156,7 @@ const Home = () => {
                                     </div>
                 }
                 {isImg  && <img className="imgPreview" src={url}/>}
-                {file && <button className="submitBtn" type="submit" onClick={submitHandler}>SUBMIT</button>}
+                {file && <button className="submit" type="submit" onClick={submitHandler}>SUBMIT</button>}
               </form>
               
             </div> 
