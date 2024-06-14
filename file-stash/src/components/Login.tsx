@@ -21,17 +21,6 @@ const Login = () => {
 
     const submitHandler = async(e:FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        
-        // await axios.post("http://localhost:3000/login",{
-        //     user:username,
-        //     password:pass
-        // })
-        // .then((response):void=>{
-        //     console.log(response)
-        // })
-        // .catch((err:Error):void=>{
-        //     console.log("err: ",err)
-        // })
 
         try {
             const response = await axios.post("http://localhost:3000/login",{

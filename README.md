@@ -38,4 +38,4 @@ start the server by running this command
 node dist/src/server.js
 ```
 
-Create an account at http://localhost:5173/signup, then u can start using the 
+Create an account at http://localhost:5173/signup.Then start using the app.

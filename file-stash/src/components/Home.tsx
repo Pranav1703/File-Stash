@@ -139,7 +139,6 @@ const Home = () => {
     
   }, [file,dataArray]);
   
-  console.log("blob converted to url---",url)
   
   return (
     <>

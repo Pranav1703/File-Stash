@@ -76,9 +76,6 @@ router.post("/:filename",async(req,res)=>{
                 res.json("delete success")
             }
         })
-
-       
-
         
 
     } catch (error) {
